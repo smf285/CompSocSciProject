@@ -9,14 +9,16 @@ ui <- fluidPage(
         
         selectInput(inputId = "Age", 
                         label = "Select Age:", 
-                        choices = Age,
+                        choices = unique(ACS_data$Age)),
         
         selectInput(inputId = "Language",
                         label = "Select Language Family:", 
-                        choices = Language)),
+                        choices = unique(ACS_data$Language))),
     
     
      mainPanel(
         
         plotOutput("interactive_plot")
-        ))))
+        )
+     )
+     )
