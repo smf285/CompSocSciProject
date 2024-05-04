@@ -24,15 +24,21 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r}
-getwd()
-setwd("C:\\Users\\sharo\\Documents\\Sharon's Documents\\CompSocSciProject\\data")
-ACS_data <- read.csv("real_app_data_csv.csv") 
-str(ACS_data)
+* For my app, I found data about knowledge of different languages in New Jersey and the United States. The data has numbers of speakers by age group - minor (under 18), adults (18-64 years of age), and seniors (65+) - and by language family.
 
+Simple bar charts that are modified by the user's input give a rough idea of the distribution of language knowledge.
+```{r}
+library(tidyverse)
 library(ggplot2)
 library(dplyr)
 
-ggplot(data = ACS_data, mapping = aes(x = Age, y = Speakers, fill = Language)) + geom_col()
-```
+ACS_data <- read_csv("data/real_app_data_csv.csv")
+ACS_data2 <- read_csv("data/2nd-app-dataset_csv.csv")
 
+ggplot(data = ACS_data, mapping = aes(x = Age, y = Speakers, fill = Language)) + geom_col(position = "dodge") + theme_classic() + labs(title = "Number of Language Speakers in NJ by Age", x = "Age", y = "Number of Speakers")
+# With this particular plot, the data about age will be filtered based on the user's input.
+
+ggplot(data = ACS_data2, mapping = aes(x = Level, y = Speakers, fill = Language)) + geom_col(position = "dodge") + theme_classic() + labs(title = "Number of Language Speakers by Level", x = "Level", y = "Number of Speakers")
+
+# In the app, this particular plot will involve data about the level (national vs state) based on the user's input.
+```

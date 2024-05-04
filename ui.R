@@ -1,7 +1,7 @@
 library(shiny)
 
 ui <- fluidPage(
-    titlePanel(title = "Interactive language visuals"),
+    titlePanel(title = "Investigative language visuals"),
     
     sidebarLayout(
         
@@ -11,14 +11,22 @@ ui <- fluidPage(
                         label = "Select Age:", 
                         choices = unique(ACS_data$Age)),
         
-        selectInput(inputId = "Language",
-                        label = "Select Language Family:", 
-                        choices = unique(ACS_data$Language))),
+        selectInput(inputId = "Level",
+                    label = "Select Level:",
+                    choices = unique(ACS_data2$Level))
+        
+        ),
     
     
      mainPanel(
         
-        plotOutput("interactive_plot")
+        plotOutput("interactive_plot"),
+        
+        textOutput("text"),
+        
+        plotOutput("interactive_plot2"),
+        
+        textOutput("text2")
         )
      )
      )
